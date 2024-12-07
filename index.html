@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Descargador de Videos</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- iframe-resizer library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/iframe-resizer/4.3.9/iframeResizer.min.js"></script>
+    <!-- Custom CSS -->
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+            max-width: 800px;
+        }
+        .card-container {
+            height: 300px;
+            margin: 20px 0;
+            border-radius: 10px;
+            overflow: hidden;
+            background: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+            font-weight: bold;
+            font-size: 2.2rem;
+        }
+        .features {
+            margin-top: 30px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+        }
+        .feature-item {
+            margin: 10px 0;
+            padding: 10px;
+            border-left: 4px solid #764ba2;
+            background: white;
+            border-radius: 0 5px 5px 0;
+            transition: transform 0.2s;
+        }
+        .feature-item:hover {
+            transform: translateX(5px);
+        }
+        .url-input {
+            margin: 20px 0;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+        .url-input input {
+            border: 2px solid #764ba2;
+            border-radius: 5px;
+            padding: 10px;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+        .url-input button {
+            background: #764ba2;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+        }
+        .url-input button:hover {
+            background: #667eea;
+            transform: translateY(-2px);
+        }
+        #cardApiIframe {
+            border: none;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎥 Descargador Universal de Videos</h1>
+        
+        <!-- URL Input Section -->
+        <div class="url-input">
+            <input type="text" id="videoUrl" placeholder="Pega aquí la URL del video..." class="form-control">
+            <button onclick="cargarVideo()" class="btn">Cargar Video</button>
+        </div>
+
+        <!-- Card Container -->
+        <div class="card-container">
+            <iframe 
+                id="cardApiIframe"
+                scrolling="no"
+                width="100%"
+                height="100%"
+                allowtransparency="true"
+                style="border: none"
+                src="https://loader.to/api/card2/?adUrl=https://myAdurl.com">
+            </iframe>
+        </div>
+
+        <!-- Features Section -->
+        <div class="features">
+            <h3 class="mb-4">✨ Características:</h3>
+            <div class="feature-item">✅ Descarga videos de YouTube en alta calidad</div>
+            <div class="feature-item">✅ Soporta múltiples formatos (MP4, MP3, etc.)</div>
+            <div class="feature-item">✅ Descarga rápida y segura</div>
+            <div class="feature-item">✅ Sin límite de descargas</div>
+            <div class="feature-item">✅ Interfaz moderna y fácil de usar</div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom JavaScript -->
+    <script>
+        // Inicializar iframe-resizer con la configuración exacta proporcionada
+        iFrameResize({ 
+            log: false 
+        }, '#cardApiIframe');
+
+        // Función para cargar video
+        function cargarVideo() {
+            const url = document.getElementById('videoUrl').value;
+            if (url) {
+                const iframe = document.getElementById('cardApiIframe');
+                iframe.src = `https://loader.to/api/card2/?url=${encodeURIComponent(url)}&adUrl=https://myAdurl.com`;
+            } else {
+                alert('Por favor, ingresa una URL válida');
+            }
+        }
+    </script>
+</body>
+</html> 
